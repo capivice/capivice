@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Capivice | Crystal Defender, em breve</title>
-    <meta name="description" content="A Capivice é um estúdio indie pequeno que faz jogos leves, bonitos e gostosos de jogar. Vem conhecer o Crystal Defender!">
+    <title>Capivice | Estúdio indie de jogos</title>
+    <meta name="description" content="A Capivice é um estúdio indie pequeno que faz jogos leves, bonitos e gostosos de jogar. Nosso primeiro jogo é o Crystal Defender: The Last Line.">
     <meta name="theme-color" content="#050505">
     <link rel="icon" href="./assets/capivice-logo-alpha.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,13 +29,13 @@
         </a>
 
         <nav class="nav" aria-label="Principal">
-            <a href="#jogo">Crystal Defender</a>
+            <a href="#jogos">Jogos</a>
             <a href="#sobre">Estúdio</a>
             <a href="#processo">Processo</a>
             <a href="#contato">Contato</a>
         </nav>
 
-        <a href="#contato" class="header-cta">Acompanhar</a>
+        <a href="./crystal-defender/" class="header-cta">Crystal Defender</a>
 
         <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu">
             <span></span><span></span>
@@ -43,35 +43,43 @@
     </header>
 
     <div class="mobile-menu" id="mobile-menu" hidden>
-        <a href="#jogo">Crystal Defender</a>
+        <a href="#jogos">Jogos</a>
         <a href="#sobre">Estúdio</a>
         <a href="#processo">Processo</a>
         <a href="#contato">Contato</a>
     </div>
 
     <main id="topo">
-        <!-- Hero: key art do Crystal Defender -->
-        <section class="hero" aria-labelledby="hero-title">
+        <!-- Hero do estúdio -->
+        <section class="hero hero--studio" aria-labelledby="hero-title">
+            <div class="hero-slides" aria-hidden="true">
+                <img class="hero-slide is-active" src="./assets/game/onda-10-ogro.png" alt="" data-caption="Crystal Defender · Onda 10">
+                <img class="hero-slide" src="./assets/game/onda-30-bruxa.png" alt="" data-caption="Crystal Defender · Onda 30" loading="lazy">
+                <img class="hero-slide" src="./assets/game/onda-50-morzath.png" alt="" data-caption="Crystal Defender · Onda 50" loading="lazy">
+            </div>
+            <div class="hero-grade" aria-hidden="true"></div>
             <canvas class="hero-canvas" aria-hidden="true"></canvas>
             <div class="hero-vignette" aria-hidden="true"></div>
 
             <div class="hero-content">
-                <p class="hero-kicker" data-split>Capivice apresenta</p>
-                <h1 class="hero-title" id="hero-title">
-                    <span class="line"><span>Crystal</span></span>
-                    <span class="line"><span>Defender</span></span>
+                <p class="hero-kicker">Capivice · Estúdio indie</p>
+                <h1 class="hero-headline" id="hero-title">
+                    <span class="line"><span>Pega um café,</span></span>
+                    <span class="line"><span>senta aí e vem</span></span>
+                    <span class="line"><span><em>jogar com a gente.</em></span></span>
                 </h1>
-                <p class="hero-tagline">O cristal tá sob ataque. Só você pode protegê-lo.</p>
+                <p class="hero-tagline">Somos um estúdio pequeno que faz jogos leves, bonitos e daqueles que você fala "só mais uma partida" e, quando vê, já passou uma hora.</p>
                 <div class="hero-actions">
-                    <a class="btn btn-primary" href="#jogo"><span>Conhecer o jogo</span></a>
+                    <a class="btn btn-primary" href="./crystal-defender/"><span>Conhecer o Crystal Defender</span></a>
                     <a class="btn btn-ghost" href="#sobre"><span>Quem tá por trás?</span></a>
                 </div>
             </div>
 
             <div class="hero-meta">
-                <span class="badge-live"><i></i> Em desenvolvimento</span>
+                <span class="badge-live"><i></i> No forno</span>
                 <span class="hero-meta-sep"></span>
-                <span>Defesa de base</span>
+                <span class="hero-caption">Crystal Defender · Onda 10</span>
+                <div class="hero-dots" aria-hidden="true"></div>
             </div>
 
             <a href="#ticker" class="scroll-cue" aria-label="Rolar para baixo">
@@ -88,49 +96,31 @@
             </div>
         </div>
 
-        <!-- O jogo -->
-        <section class="game" id="jogo" aria-labelledby="game-title">
+        <!-- Jogos -->
+        <section class="games" id="jogos" aria-labelledby="games-title">
             <div class="section-head">
                 <p class="eyebrow" data-reveal><span>01</span> O que tá no forno</p>
-                <h2 class="display" id="game-title" data-reveal>Um mago.<br>Um cristal.<br><em>Ondas sem fim.</em></h2>
+                <h2 class="display" id="games-title" data-reveal>Um jogo<br><em>de cada vez.</em></h2>
                 <p class="lead" data-reveal>
-                    Agora a gente tá colocando todo o nosso tempo (e muito café) em um jogo só.
-                    Na pele de um mago, monte suas defesas, solte seus feitiços e segure onda após onda de inimigos.
+                    Agora a gente tá colocando todo o nosso tempo (e muito café) em um jogo só. Dá uma olhada:
                 </p>
             </div>
 
-            <div class="features">
-                <article class="feature" data-reveal data-tilt>
-                    <div class="feature-art feature-art--build" aria-hidden="true">
-                        <svg viewBox="0 0 120 120"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M30 95h60M38 95V55h44v40M34 55l26-22 26 22"/><path d="M52 95V75h16v20"/><circle cx="60" cy="47" r="4"/></g></svg>
-                    </div>
-                    <span class="feature-num">I</span>
-                    <h3>Monte suas defesas</h3>
-                    <p>Torres, barreiras e armadilhas no lugar certo fazem toda a diferença.</p>
-                </article>
-                <article class="feature" data-reveal data-tilt>
-                    <div class="feature-art feature-art--spell" aria-hidden="true">
-                        <svg viewBox="0 0 120 120"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="60" cy="60" r="32"/><circle cx="60" cy="60" r="22" stroke-dasharray="4 6"/><path d="M60 22v12M60 86v12M22 60h12M86 60h12"/><path d="M60 44l6 16-6 16-6-16z"/></g></svg>
-                    </div>
-                    <span class="feature-num">II</span>
-                    <h3>Solte seus feitiços</h3>
-                    <p>Magia na hora certa vira o jogo quando a horda aperta.</p>
-                </article>
-                <article class="feature" data-reveal data-tilt>
-                    <div class="feature-art feature-art--waves" aria-hidden="true">
-                        <svg viewBox="0 0 120 120"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M18 50c10-10 20 10 30 0s20 10 30 0 20 10 30 0"/><path d="M18 66c10-10 20 10 30 0s20 10 30 0 20 10 30 0"/><path d="M18 82c10-10 20 10 30 0s20 10 30 0 20 10 30 0"/><path d="M60 22l8 12-8 8-8-8z"/></g></svg>
-                    </div>
-                    <span class="feature-num">III</span>
-                    <h3>Segure as ondas</h3>
-                    <p>Fases rápidas, muita magia e aquela vontade de tentar de novo.</p>
-                </article>
-            </div>
-
-            <div class="game-strip" data-reveal>
-                <div class="game-strip-item"><strong data-count="1">0</strong><span>Cristal pra proteger</span></div>
-                <div class="game-strip-item"><strong>∞</strong><span>Vontade de tentar de novo</span></div>
-                <div class="game-strip-item"><strong data-count="100">0</strong><span>% feito com carinho</span></div>
-            </div>
+            <a class="showcase" href="./crystal-defender/" data-reveal>
+                <div class="showcase-media" aria-hidden="true">
+                    <img src="./assets/game/onda-50-morzath.png" alt="" loading="lazy">
+                </div>
+                <div class="showcase-body">
+                    <img src="./assets/game/crystal-defender-logo.png" alt="Crystal Defender: The Last Line" class="showcase-logo" loading="lazy">
+                    <ul class="showcase-tags">
+                        <li>Até 4 jogadores</li>
+                        <li>Co-op</li>
+                        <li>Em breve na Steam</li>
+                    </ul>
+                    <p>O cristal tá sob ataque e só vocês podem protegê-lo. Escolha seu mago, monte seu caminho de poderes e segure onda após onda de monstros.</p>
+                    <span class="showcase-cta">Ver a página do jogo <i>→</i></span>
+                </div>
+            </a>
         </section>
 
         <!-- Estúdio -->
@@ -190,12 +180,12 @@
             <p class="eyebrow" data-reveal><span>04</span> Bora jogar junto?</p>
             <h2 class="cta-title" id="cta-title" data-reveal>Seja um dos<br><em>primeiros</em> a jogar.</h2>
             <p class="lead" data-reveal>
-                O Crystal Defender tá chegando e a gente quer muito que você esteja lá.
+                O Crystal Defender tá chegando e a gente quer muito que você seja um dos primeiros a jogar.
                 Acompanha a gente pra não perder nada!
             </p>
             <div class="hero-actions" data-reveal>
                 <a class="btn btn-primary btn-lg" href="#" aria-label="Abrir perfil da Capivice"><span>Seguir @capivice</span></a>
-                <a class="btn btn-ghost" href="#jogo"><span>Ver o Crystal Defender</span></a>
+                <a class="btn btn-ghost" href="./crystal-defender/"><span>Ver o Crystal Defender</span></a>
             </div>
             <p class="cta-note" data-reveal>Quer dar um oi, mandar sugestão ou só bater papo? Chama a gente em <a href="#" class="link">@capivice</a>.</p>
         </section>

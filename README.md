@@ -14,12 +14,13 @@ Esta pasta (`docs/`) contém a versão estática do site, pronta para GitHub Pag
 
 ## Estrutura
 
-- `index.html`: página principal
-- `css/style.css`: estilos (tokens, layout, animações, responsivo)
-- `js/hero.js`: key art animada do Crystal Defender em canvas (cristal, círculo rúnico, inimigos e raios)
-- `js/main.js`: loader, header, menu mobile, reveals no scroll, contadores, tilt e botões magnéticos
-- `assets/capivice-logo.png`: logo original (fundo preto)
-- `assets/capivice-logo-alpha.png`: logo com fundo transparente (header e favicon)
+- `index.html`: LP do estúdio (`/`), com vitrine do Crystal Defender
+- `crystal-defender/index.html`: LP do jogo (`/crystal-defender/`), com galeria e lightbox
+- `css/style.css`: estilos compartilhados (tokens, layout, tratamento das screenshots, animações, responsivo)
+- `js/hero.js`: brasas e faíscas animadas por cima do hero
+- `js/main.js`: loader, header, menu mobile, slideshow do hero, reveals, galeria/lightbox, contadores e tilt
+- `assets/capivice-logo.png` / `assets/capivice-logo-alpha.png`: logo do estúdio (fundo preto / transparente)
+- `assets/game/`: logo e screenshots do Crystal Defender: The Last Line
 
 ## Rodar localmente
 
