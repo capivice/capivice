@@ -147,6 +147,7 @@
     let currentStep = "";
 
     function updateSteps() {
+        if (!steps.length) return;
         const mid = window.innerHeight * 0.5;
         let active = steps[0];
         for (const s of steps) {
@@ -173,6 +174,157 @@
         const rect = studioLogo.getBoundingClientRect();
         const k = (rect.top + rect.height / 2 - window.innerHeight / 2) / window.innerHeight;
         studioLogo.style.transform = `translateY(${k * -60}px) rotate(${k * -6}deg)`;
+    }
+
+    /* ---------- Hero: slideshow das screenshots ---------- */
+    const slides = [...document.querySelectorAll(".hero-slide")];
+    const caption = document.querySelector(".hero-caption");
+    const dotsWrap = document.querySelector(".hero-dots");
+    const SLIDE_MS = 6000;
+    let slideIndex = 0;
+    let dots = [];
+
+    if (slides.length > 1) {
+        if (dotsWrap) {
+            dotsWrap.style.setProperty("--slide-ms", `${SLIDE_MS}ms`);
+            dots = slides.map(() => dotsWrap.appendChild(document.createElement("i")));
+        }
+
+        const showSlide = (next) => {
+            slides[slideIndex].classList.remove("is-active");
+            slideIndex = next;
+            const slide = slides[slideIndex];
+            if (slide.loading === "lazy") slide.loading = "eager";
+            slide.classList.add("is-active");
+
+            dots.forEach((d, i) => {
+                d.classList.remove("is-active");
+                d.classList.toggle("is-done", i < slideIndex);
+            });
+            // Reinicia a animação do traço atual
+            if (dots[slideIndex]) {
+                void dots[slideIndex].offsetWidth;
+                dots[slideIndex].classList.add("is-active");
+            }
+
+            if (caption) {
+                caption.classList.add("is-swapping");
+                setTimeout(() => {
+                    caption.textContent = slide.dataset.caption;
+                    caption.classList.remove("is-swapping");
+                }, 400);
+            }
+        };
+
+        showSlide(0);
+        if (!reduceMotion) setInterval(() => showSlide((slideIndex + 1) % slides.length), SLIDE_MS);
+    }
+
+    /* ---------- Galeria: arrastar, setas e progresso ---------- */
+    const track = document.querySelector(".gallery-track");
+    const progress = document.querySelector(".gallery-progress span");
+
+    function updateGallery() {
+        if (!track || !progress) return;
+        const max = track.scrollWidth - track.clientWidth;
+        const k = max > 0 ? track.scrollLeft / max : 1;
+        const visible = track.clientWidth / track.scrollWidth;
+        progress.style.transform = `scaleX(${Math.max(visible, visible + (1 - visible) * k)})`;
+    }
+
+    if (track) {
+        const shots = [...track.querySelectorAll(".shot")];
+        const step = () => (shots[1] ? shots[1].offsetLeft - shots[0].offsetLeft : track.clientWidth);
+
+        document.querySelectorAll(".gallery-btn").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                track.scrollBy({ left: step() * Number(btn.dataset.dir), behavior: "smooth" });
+            });
+        });
+
+        track.addEventListener("scroll", updateGallery, { passive: true });
+        updateGallery();
+
+        // Arrastar com o mouse (no touch o scroll nativo já resolve)
+        let dragX = 0;
+        let dragStart = 0;
+        let dragged = false;
+        track.addEventListener("pointerdown", (e) => {
+            if (e.pointerType !== "mouse") return;
+            dragX = e.clientX;
+            dragStart = track.scrollLeft;
+            dragged = false;
+            track.classList.add("is-dragging");
+            const move = (ev) => {
+                const dx = ev.clientX - dragX;
+                if (Math.abs(dx) > 5) dragged = true;
+                track.scrollLeft = dragStart - dx;
+            };
+            const up = () => {
+                track.classList.remove("is-dragging");
+                window.removeEventListener("pointermove", move);
+                window.removeEventListener("pointerup", up);
+                // Volta pro snap mais próximo
+                const i = Math.round(track.scrollLeft / step());
+                track.scrollTo({ left: i * step(), behavior: "smooth" });
+            };
+            window.addEventListener("pointermove", move);
+            window.addEventListener("pointerup", up);
+        });
+        // Clique depois de arrastar não abre o lightbox
+        track.addEventListener("click", (e) => {
+            if (dragged) {
+                e.stopPropagation();
+                e.preventDefault();
+                dragged = false;
+            }
+        }, true);
+
+        /* Lightbox */
+        const lightbox = document.querySelector(".lightbox");
+        const lbImg = lightbox.querySelector("img");
+        const lbCaption = lightbox.querySelector("figcaption");
+        let lbIndex = 0;
+        let lastFocus = null;
+
+        const showShot = (i) => {
+            lbIndex = (i + shots.length) % shots.length;
+            const img = shots[lbIndex].querySelector("img");
+            lbImg.src = img.currentSrc || img.src;
+            lbImg.alt = img.alt;
+            lbCaption.textContent = shots[lbIndex].querySelector("figcaption").textContent.trim();
+        };
+
+        const openLightbox = (i) => {
+            lastFocus = document.activeElement;
+            showShot(i);
+            lightbox.hidden = false;
+            body.style.overflow = "hidden";
+            lightbox.querySelector(".lightbox-close").focus();
+        };
+
+        const closeLightbox = () => {
+            lightbox.hidden = true;
+            body.style.overflow = "";
+            if (lastFocus) lastFocus.focus();
+        };
+
+        shots.forEach((shot, i) => {
+            shot.querySelector(".shot-open").addEventListener("click", () => openLightbox(i));
+        });
+        lightbox.querySelector(".lightbox-close").addEventListener("click", closeLightbox);
+        lightbox.querySelectorAll(".lightbox-arrow").forEach((btn) => {
+            btn.addEventListener("click", () => showShot(lbIndex + Number(btn.dataset.dir)));
+        });
+        lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener("keydown", (e) => {
+            if (lightbox.hidden) return;
+            if (e.key === "Escape") closeLightbox();
+            if (e.key === "ArrowRight") showShot(lbIndex + 1);
+            if (e.key === "ArrowLeft") showShot(lbIndex - 1);
+        });
     }
 
     let ticking = false;

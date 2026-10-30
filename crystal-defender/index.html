@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crystal Defender: The Last Line | Capivice</title>
+    <meta name="description" content="Crystal Defender: The Last Line. Até 4 magos, um cristal e ondas sem fim. Defesa de cristal em co-op da Capivice, em breve na Steam.">
+    <meta name="theme-color" content="#050505">
+    <meta property="og:title" content="Crystal Defender: The Last Line">
+    <meta property="og:description" content="Até 4 magos. Um cristal. Ondas sem fim.">
+    <meta property="og:image" content="../assets/game/onda-50-morzath.png">
+    <link rel="icon" href="../assets/capivice-logo-alpha.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="is-loading page-game">
+    <!-- Intro -->
+    <div class="loader" aria-hidden="true">
+        <img src="../assets/game/crystal-defender-logo.png" alt="" class="loader-logo loader-logo--game">
+        <div class="loader-bar"><span></span></div>
+        <p class="loader-label">Carregando o cristal<span class="loader-pct">0</span>%</p>
+    </div>
+
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <a href="../" class="brand" aria-label="Capivice, voltar para o estúdio">
+            <img src="../assets/capivice-logo-alpha.png" alt="" class="brand-logo">
+            <span class="brand-name">Capivice</span>
+        </a>
+
+        <nav class="nav" aria-label="Principal">
+            <a href="#jogo">O jogo</a>
+            <a href="#galeria">Galeria</a>
+            <a href="#contato">Lista de espera</a>
+            <a href="../">Estúdio</a>
+        </nav>
+
+        <a href="#contato" class="header-cta">Em breve na Steam</a>
+
+        <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu">
+            <span></span><span></span>
+        </button>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+        <a href="#jogo">O jogo</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#contato">Lista de espera</a>
+        <a href="../">Estúdio</a>
+    </div>
+
+    <main id="topo">
+        <!-- Hero: screenshots reais do Crystal Defender -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-slides" aria-hidden="true">
+                <img class="hero-slide is-active" src="../assets/game/onda-01-ruinas.png" alt="" data-caption="Onda 01 · As ruínas">
+                <img class="hero-slide" src="../assets/game/onda-10-ogro.png" alt="" data-caption="Onda 10 · Ogro gigante" loading="lazy">
+                <img class="hero-slide" src="../assets/game/onda-30-bruxa.png" alt="" data-caption="Onda 30 · Bruxa da torre" loading="lazy">
+                <img class="hero-slide" src="../assets/game/onda-50-morzath.png" alt="" data-caption="Onda 50 · Mor'Zath, o Devorador" loading="lazy">
+            </div>
+            <div class="hero-grade" aria-hidden="true"></div>
+            <canvas class="hero-canvas" aria-hidden="true"></canvas>
+            <div class="hero-vignette" aria-hidden="true"></div>
+
+            <div class="hero-content">
+                <p class="hero-kicker">Capivice apresenta</p>
+                <h1 class="hero-title" id="hero-title">
+                    <span class="sr-only">Crystal Defender: The Last Line</span>
+                    <img src="../assets/game/crystal-defender-logo.png" alt="" class="hero-logo" width="1696" height="928">
+                </h1>
+                <p class="hero-tagline">Até 4 magos. Um cristal. Ondas sem fim.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#jogo"><span>Conhecer o jogo</span></a>
+                    <a class="btn btn-ghost" href="#galeria"><span>Ver imagens</span></a>
+                </div>
+            </div>
+
+            <div class="hero-meta">
+                <span class="badge-live"><i></i> Em breve na Steam</span>
+                <span class="hero-meta-sep"></span>
+                <span class="hero-caption">Onda 01 · As ruínas</span>
+                <div class="hero-dots" aria-hidden="true"></div>
+            </div>
+
+            <a href="#ticker" class="scroll-cue" aria-label="Rolar para baixo">
+                <span>Role</span>
+                <i></i>
+            </a>
+        </section>
+
+        <!-- Ticker -->
+        <div class="ticker" id="ticker" aria-hidden="true">
+            <div class="ticker-track">
+                <span>Até 4 jogadores</span><b>✦</b><span>Magos diferentes</span><b>✦</b><span>Cada caminho, um jogo</span><b>✦</b><span>Só mais uma onda</span><b>✦</b>
+                <span>Até 4 jogadores</span><b>✦</b><span>Magos diferentes</span><b>✦</b><span>Cada caminho, um jogo</span><b>✦</b><span>Só mais uma onda</span><b>✦</b>
+            </div>
+        </div>
+
+        <!-- O jogo -->
+        <section class="game" id="jogo" aria-labelledby="game-title">
+            <div class="section-head">
+                <p class="eyebrow" data-reveal><span>01</span> O jogo</p>
+                <h2 class="display" id="game-title" data-reveal>Junta a galera.<br>Protege o cristal.<br><em>Segura a linha.</em></h2>
+                <p class="lead" data-reveal>
+                    Crystal Defender: The Last Line é o primeiro jogo da Capivice: defesa de cristal em plataforma, solo ou em co-op. Você e até três amigos seguram onda após onda
+                    de monstros, sobem de nível e escolhem seus poderes no caminho. Cada escolha muda a partida, então nenhuma é igual à outra.
+                </p>
+            </div>
+
+            <div class="features">
+                <article class="feature" data-reveal data-tilt>
+                    <div class="feature-art" aria-hidden="true">
+                        <svg viewBox="0 0 120 120"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="38" cy="44" r="10"/><circle cx="82" cy="44" r="10"/><circle cx="38" cy="80" r="10"/><circle cx="82" cy="80" r="10"/><path d="M60 50l8 12-8 12-8-12z"/></g></svg>
+                    </div>
+                    <span class="feature-num">I</span>
+                    <h3>Até 4 jogadores</h3>
+                    <p>Crie uma sala, passe o código pros amigos e defendam o cristal juntos. Ou encare tudo solo.</p>
+                </article>
+                <article class="feature" data-reveal data-tilt>
+                    <div class="feature-art" aria-hidden="true">
+                        <svg viewBox="0 0 120 120"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M60 18L36 74h48z"/><path d="M28 74h64"/><path d="M44 86c4 10 28 10 32 0"/><circle cx="66" cy="50" r="3"/><path d="M90 30v60"/><circle cx="90" cy="26" r="5"/></g></svg>
+                    </div>
+                    <span class="feature-num">II</span>
+                    <h3>Magos diferentes</h3>
+                    <p>Cada mago tem seu jeito de lutar. Do Mago Azul ao Sacerdote, escolha quem vai segurar a linha.</p>
+                </article>
+                <article class="feature" data-reveal data-tilt>
+                    <div class="feature-art" aria-hidden="true">
+                        <svg viewBox="0 0 120 120"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M60 100V66"/><path d="M60 66L32 38M60 66l28-28M60 66V26"/><circle cx="32" cy="34" r="6"/><circle cx="88" cy="34" r="6"/><circle cx="60" cy="20" r="6"/><circle cx="60" cy="100" r="4"/></g></svg>
+                    </div>
+                    <span class="feature-num">III</span>
+                    <h3>Cada caminho, um jogo</h3>
+                    <p>Luz, Gelo, Raio, Magnético… a cada nível você escolhe um poder, e a combinação muda tudo.</p>
+                </article>
+            </div>
+
+            <div class="game-strip" data-reveal>
+                <div class="game-strip-item"><strong data-count="4">0</strong><span>Magos na mesma sala</span></div>
+                <div class="game-strip-item"><strong>∞</strong><span>Combinações de poderes</span></div>
+                <div class="game-strip-item"><strong data-count="1">0</strong><span>Cristal pra proteger</span></div>
+            </div>
+        </section>
+
+        <!-- Galeria -->
+        <section class="gallery" id="galeria" aria-labelledby="gallery-title">
+            <div class="gallery-head">
+                <p class="eyebrow" data-reveal><span>02</span> Mundos e chefes</p>
+                <h2 class="display" id="gallery-title" data-reveal>Cada onda,<br><em>um perigo novo.</em></h2>
+            </div>
+
+            <div class="gallery-track" tabindex="0" aria-label="Imagens do jogo, role para o lado">
+                <figure class="shot" data-reveal>
+                    <button class="shot-open" aria-label="Ampliar: Onda 1, as ruínas">
+                        <img src="../assets/game/onda-01-ruinas.png" alt="Mago Azul nas ruínas do castelo enquanto morcegos atacam o cristal" loading="lazy">
+                        <span class="shot-tag">01 / 05</span>
+                    </button>
+                    <figcaption><span>Onda 01</span> As ruínas</figcaption>
+                </figure>
+                <figure class="shot" data-reveal>
+                    <button class="shot-open" aria-label="Ampliar: Onda 10, Ogro gigante">
+                        <img src="../assets/game/onda-10-ogro.png" alt="Sacerdote enfrentando o Ogro gigante e uma horda de goblins" loading="lazy">
+                        <span class="shot-tag">02 / 05</span>
+                    </button>
+                    <figcaption><span>Onda 10</span> Ogro gigante</figcaption>
+                </figure>
+                <figure class="shot" data-reveal>
+                    <button class="shot-open" aria-label="Ampliar: Onda 30, Bruxa da torre">
+                        <img src="../assets/game/onda-30-bruxa.png" alt="Floresta nevada com a Bruxa da torre, morcegos e lobos cercando o cristal" loading="lazy">
+                        <span class="shot-tag">03 / 05</span>
+                    </button>
+                    <figcaption><span>Onda 30</span> Bruxa da torre</figcaption>
+                </figure>
+                <figure class="shot" data-reveal>
+                    <button class="shot-open" aria-label="Ampliar: Onda 50, Mor'Zath, o Devorador">
+                        <img src="../assets/game/onda-50-morzath.png" alt="Arena de lava com o demônio gigante Mor'Zath, o Devorador, atrás do cristal" loading="lazy">
+                        <span class="shot-tag">04 / 05</span>
+                    </button>
+                    <figcaption><span>Onda 50</span> Mor'Zath, o Devorador</figcaption>
+                </figure>
+                <figure class="shot" data-reveal>
+                    <button class="shot-open" aria-label="Ampliar: menu do jogo">
+                        <img src="../assets/game/menu.png" alt="Menu inicial com as opções jogar solo, criar sala e entrar com código" loading="lazy">
+                        <span class="shot-tag">05 / 05</span>
+                    </button>
+                    <figcaption><span>Menu</span> Jogue solo ou crie uma sala</figcaption>
+                </figure>
+            </div>
+
+            <div class="gallery-nav">
+                <button class="gallery-btn" data-dir="-1" aria-label="Imagem anterior">←</button>
+                <div class="gallery-progress" aria-hidden="true"><span></span></div>
+                <button class="gallery-btn" data-dir="1" aria-label="Próxima imagem">→</button>
+            </div>
+        </section>
+
+        <div class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+            <button class="lightbox-close" aria-label="Fechar">✕</button>
+            <button class="lightbox-arrow" data-dir="-1" aria-label="Anterior">←</button>
+            <figure>
+                <img src="" alt="">
+                <figcaption></figcaption>
+            </figure>
+            <button class="lightbox-arrow" data-dir="1" aria-label="Próxima">→</button>
+        </div>
+
+        <!-- CTA -->
+        <section class="cta" id="contato" aria-labelledby="cta-title">
+            <div class="cta-glow" aria-hidden="true"></div>
+            <p class="eyebrow" data-reveal><span>03</span> Segura a linha com a gente</p>
+            <h2 class="cta-title" id="cta-title" data-reveal>Chama a galera.<br><em>O cristal</em> espera.</h2>
+            <p class="lead" data-reveal>
+                Crystal Defender: The Last Line tá chegando na Steam. Acompanha a Capivice pra saber
+                antes de todo mundo quando abrir a lista de desejos.
+            </p>
+            <div class="hero-actions" data-reveal>
+                <a class="btn btn-primary btn-lg" href="#" aria-label="Abrir perfil da Capivice"><span>Seguir @capivice</span></a>
+                <a class="btn btn-ghost" href="../"><span>Conhecer o estúdio</span></a>
+            </div>
+            <p class="cta-note" data-reveal>Achou um bug, tem uma ideia de mago ou só quer falar do jogo? Chama a gente em <a href="#" class="link">@capivice</a>.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-mark footer-mark--game" aria-hidden="true">The Last Line</div>
+        <div class="footer-row">
+            <span>© 2026 Capivice</span>
+            <span>Um jogo Capivice, feito com carinho e muito café.</span>
+            <a href="#topo" class="link">Voltar ao topo ↑</a>
+        </div>
+    </footer>
+
+    <script src="../js/hero.js" defer></script>
+    <script src="../js/main.js" defer></script>
+</body>
+</html>
