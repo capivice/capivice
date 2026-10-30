@@ -3,755 +3,214 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Capivice | Jogos feitos com carinho pra você se divertir</title>
+    <title>Capivice | Crystal Defender, em breve</title>
     <meta name="description" content="A Capivice é um estúdio indie pequeno que faz jogos leves, bonitos e gostosos de jogar. Vem conhecer o Crystal Defender!">
+    <meta name="theme-color" content="#050505">
+    <link rel="icon" href="./assets/capivice-logo-alpha.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Russo+One&family=VT323&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #050505;
-            --bg-soft: #0d1418;
-            --surface: #111111;
-            --surface-soft: #13161a;
-            --text: #ffe9d2;
-            --muted: #c6b39b;
-            --primary: #ff5b00;
-            --primary-soft: #ff7f2f;
-            --accent: #3fd4d8;
-            --line: rgba(255, 91, 0, 0.45);
-            --ocean: #123347;
-            --max: 1120px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "Chakra Petch", sans-serif;
-            background:
-                radial-gradient(circle at 14% -4%, rgba(63, 212, 216, 0.22), transparent 40%),
-                radial-gradient(circle at 90% 16%, rgba(255, 91, 0, 0.24), transparent 35%),
-                radial-gradient(circle at 50% 120%, rgba(18, 51, 71, 0.58), transparent 44%),
-                var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-            text-rendering: optimizeLegibility;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: -2;
-            background:
-                linear-gradient(transparent 96%, rgba(63, 212, 216, 0.1) 96%),
-                linear-gradient(90deg, transparent 96%, rgba(255, 91, 0, 0.08) 96%);
-            background-size: 26px 26px, 26px 26px;
-            opacity: 0.17;
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: -1;
-            background: repeating-linear-gradient(
-                to bottom,
-                rgba(255, 255, 255, 0.05) 0 1px,
-                transparent 1px 4px
-            );
-            opacity: 0.12;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .wrap {
-            width: min(calc(100% - 2.2rem), var(--max));
-            margin-inline: auto;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(22px);
-            animation: rise 0.7s cubic-bezier(0.3, 0.7, 0.2, 1) forwards;
-        }
-
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.18s; }
-        .delay-3 { animation-delay: 0.26s; }
-
-        @keyframes rise {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float-card {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-6px); }
-        }
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            backdrop-filter: blur(12px);
-            background: rgba(8, 8, 8, 0.78);
-            border-bottom: 2px solid rgba(255, 91, 0, 0.55);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.42);
-        }
-
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.85rem 0;
-        }
-
-        .brand {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .brand-logo {
-            width: 66px;
-            height: 66px;
-            object-fit: contain;
-            border-radius: 14px;
-            background: #040404;
-            border: 2px solid rgba(255, 91, 0, 0.75);
-            padding: 0.25rem;
-            box-shadow:
-                inset 0 0 0 1px rgba(255, 255, 255, 0.06),
-                0 0 20px rgba(255, 91, 0, 0.25);
-        }
-
-        .logo-fallback {
-            width: 66px;
-            height: 66px;
-            border-radius: 14px;
-            display: grid;
-            place-items: center;
-            font-family: "Russo One", sans-serif;
-            font-size: 1rem;
-            color: #1b0f08;
-            background: linear-gradient(145deg, var(--primary), var(--primary-soft));
-            border: 2px solid rgba(255, 91, 0, 0.8);
-            box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.4);
-        }
-
-        .brand strong {
-            font-family: "Russo One", sans-serif;
-            font-size: 1.12rem;
-            line-height: 1.1;
-            display: block;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-            color: #ffdcbf;
-        }
-
-        .brand > span {
-            display: grid;
-            gap: 0.06rem;
-        }
-
-        .brand > span > span {
-            color: var(--muted);
-            font-family: "VT323", monospace;
-            font-size: 1.28rem;
-        }
-
-        nav {
-            display: flex;
-            gap: 1.1rem;
-            font-family: "VT323", monospace;
-            font-size: 1.3rem;
-            color: var(--muted);
-        }
-
-        nav a {
-            padding: 0.25rem 0.65rem;
-            border: 1px solid transparent;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-        }
-
-        nav a:hover {
-            color: var(--text);
-            border-color: rgba(63, 212, 216, 0.6);
-            background: rgba(63, 212, 216, 0.14);
-        }
-
-        .hero {
-            padding: 4.8rem 0 3.9rem;
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .hero-logo {
-            width: 150px;
-            flex-shrink: 0;
-            filter: drop-shadow(0 10px 24px rgba(255, 91, 0, 0.3));
-        }
-
-        .hero-brand-row {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero-brand-text {
-            display: grid;
-            gap: 0.2rem;
-        }
-
-        .hero-brand-text strong {
-            font-family: "Russo One", sans-serif;
-            font-size: 1.05rem;
-            color: #ffd8b8;
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-        }
-
-        .hero-brand-text span {
-            font-family: "VT323", monospace;
-            font-size: 1.3rem;
-            color: var(--accent);
-        }
-
-        h1 {
-            font-family: "Russo One", sans-serif;
-            font-size: clamp(2rem, 4vw, 3.4rem);
-            line-height: 1.08;
-            letter-spacing: 0.01em;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-        }
-
-        .hero p {
-            color: var(--muted);
-            max-width: 52ch;
-            font-size: 1.07rem;
-            margin-bottom: 1.8rem;
-        }
-
-        .actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.9rem;
-        }
-
-        .btn {
-            padding: 0.7rem 1.2rem;
-            font-family: "Russo One", sans-serif;
-            border-radius: 999px;
-            font-weight: 400;
-            font-size: 0.86rem;
-            border: 2px solid transparent;
-            transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.2s ease;
-            letter-spacing: 0.03em;
-            box-shadow:
-                inset 0 0 0 1px rgba(255, 255, 255, 0.08),
-                0 10px 22px rgba(0, 0, 0, 0.35);
-            text-transform: uppercase;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-soft));
-            border-color: rgba(255, 91, 0, 0.85);
-            color: #1a0f09;
-        }
-
-        .btn-secondary {
-            border-color: rgba(63, 212, 216, 0.75);
-            background: rgba(18, 51, 71, 0.5);
-            color: var(--text);
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow:
-                inset 0 0 0 1px rgba(255, 255, 255, 0.08),
-                0 12px 24px rgba(0, 0, 0, 0.42);
-        }
-
-        .btn:active {
-            transform: translateY(1px);
-        }
-
-        .hero-card {
-            background:
-                radial-gradient(circle at 16% 0%, rgba(63, 212, 216, 0.2), transparent 45%),
-                linear-gradient(160deg, rgba(255, 255, 255, 0.06), transparent 45%),
-                linear-gradient(180deg, #151515, #0c0c0c);
-            border: 2px solid rgba(255, 91, 0, 0.68);
-            border-radius: 22px;
-            padding: 1.25rem;
-            box-shadow:
-                inset 0 0 0 1px rgba(255, 255, 255, 0.05),
-                0 20px 34px rgba(0, 0, 0, 0.5);
-            animation: float-card 4.8s ease-in-out infinite;
-        }
-
-        .hero-card .tag {
-            display: inline-block;
-            background: rgba(63, 212, 216, 0.2);
-            color: #8ffbff;
-            border: 1px solid rgba(63, 212, 216, 0.72);
-            border-radius: 999px;
-            padding: 0.22rem 0.68rem;
-            font-family: "VT323", monospace;
-            font-size: 1.12rem;
-            margin-bottom: 0.9rem;
-        }
-
-        .hero-card h2 {
-            font-family: "Russo One", sans-serif;
-            font-size: 1.5rem;
-            line-height: 1.2;
-            margin-bottom: 0.55rem;
-            color: #ffd9bb;
-        }
-
-        .hero-card p {
-            color: var(--muted);
-            font-size: 1.02rem;
-        }
-
-        .hero-card ul {
-            margin-top: 1rem;
-            display: grid;
-            gap: 0.68rem;
-        }
-
-        .hero-card li {
-            list-style: none;
-            border: 1px solid rgba(255, 91, 0, 0.45);
-            background: rgba(7, 9, 12, 0.75);
-            border-radius: 12px;
-            padding: 0.62rem 0.75rem;
-            font-size: 0.92rem;
-            color: var(--muted);
-        }
-
-        section {
-            padding: 1.2rem 0 2.8rem;
-        }
-
-        .section-title {
-            font-family: "Russo One", sans-serif;
-            font-size: clamp(1.45rem, 3vw, 2.25rem);
-            line-height: 1.15;
-            margin-bottom: 0.75rem;
-            letter-spacing: 0.01em;
-            text-transform: uppercase;
-        }
-
-        .section-title::after {
-            content: "";
-            display: block;
-            width: 148px;
-            height: 6px;
-            margin-top: 0.55rem;
-            border-radius: 999px;
-            background: linear-gradient(90deg, var(--accent), var(--primary));
-            box-shadow: 0 0 10px rgba(63, 212, 216, 0.25);
-        }
-
-        .section-sub {
-            color: var(--muted);
-            margin-bottom: 1.2rem;
-            max-width: 58ch;
-            font-size: 1.02rem;
-        }
-
-        .grid {
-            display: grid;
-            gap: 0.95rem;
-        }
-
-        .grid.cols-3 {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-
-        .card {
-            background:
-                linear-gradient(150deg, rgba(63, 212, 216, 0.14), transparent 40%),
-                var(--surface);
-            border-radius: 16px;
-            border: 1px solid var(--line);
-            padding: 1rem;
-            box-shadow:
-                inset 0 0 0 1px rgba(255, 255, 255, 0.03),
-                0 10px 22px rgba(0, 0, 0, 0.35);
-            transition: transform 0.2s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-3px);
-        }
-
-        .card h3 {
-            font-family: "Russo One", sans-serif;
-            font-size: 1.15rem;
-            line-height: 1.2;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-        }
-
-        .card p {
-            color: var(--muted);
-            font-size: 0.98rem;
-        }
-
-        .pill {
-            display: inline-block;
-            padding: 0.22rem 0.58rem;
-            border-radius: 999px;
-            font-family: "VT323", monospace;
-            font-size: 1.05rem;
-            background: rgba(63, 212, 216, 0.16);
-            border: 1px solid rgba(63, 212, 216, 0.45);
-            color: var(--accent);
-            margin-bottom: 0.8rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 0.8rem;
-            margin-top: 1rem;
-        }
-
-        .stat {
-            border-radius: 14px;
-            background: linear-gradient(160deg, rgba(255, 91, 0, 0.16), rgba(18, 51, 71, 0.22)), var(--surface-soft);
-            border: 1px solid rgba(255, 91, 0, 0.55);
-            padding: 0.8rem;
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-        }
-
-        .stat strong {
-            display: block;
-            font-family: "Russo One", sans-serif;
-            font-size: 1.05rem;
-            color: #ffd2ac;
-            line-height: 1.2;
-            margin-bottom: 0.25rem;
-            text-transform: uppercase;
-        }
-
-        .stat span {
-            color: var(--muted);
-            font-size: 0.95rem;
-        }
-
-        .process {
-            counter-reset: step;
-            display: grid;
-            gap: 0.8rem;
-        }
-
-        .process li {
-            list-style: none;
-            border: 1px solid rgba(63, 212, 216, 0.42);
-            background: linear-gradient(140deg, rgba(63, 212, 216, 0.14), rgba(255, 91, 0, 0.1));
-            border-radius: 14px;
-            padding: 0.82rem 0.95rem;
-            position: relative;
-            padding-left: 3.2rem;
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
-        }
-
-        .process li::before {
-            counter-increment: step;
-            content: counter(step);
-            position: absolute;
-            left: 0.78rem;
-            top: 0.8rem;
-            width: 1.85rem;
-            height: 1.85rem;
-            border-radius: 999px;
-            display: grid;
-            place-items: center;
-            font-family: "Russo One", sans-serif;
-            font-size: 0.8rem;
-            color: #140b06;
-            background: linear-gradient(150deg, var(--primary-soft), var(--primary));
-            border: 1px solid rgba(0, 0, 0, 0.45);
-        }
-
-        .process h4 {
-            font-family: "Russo One", sans-serif;
-            font-size: 1rem;
-            line-height: 1.2;
-            margin-bottom: 0.25rem;
-            text-transform: uppercase;
-        }
-
-        .process p {
-            color: var(--muted);
-            font-size: 0.95rem;
-        }
-
-        .cta {
-            background:
-                radial-gradient(circle at 0% 0%, rgba(63, 212, 216, 0.22), transparent 35%),
-                linear-gradient(125deg, rgba(255, 91, 0, 0.24), rgba(18, 51, 71, 0.32)),
-                linear-gradient(190deg, #141414, #0b0b0b);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 91, 0, 0.7);
-            padding: 1.2rem;
-            margin-bottom: 3rem;
-            box-shadow:
-                inset 0 0 0 1px rgba(255, 255, 255, 0.05),
-                0 14px 26px rgba(0, 0, 0, 0.34);
-        }
-
-        .cta h3 {
-            font-family: "Russo One", sans-serif;
-            font-size: clamp(1.1rem, 2.3vw, 1.45rem);
-            line-height: 1.2;
-            margin-bottom: 0.6rem;
-            text-transform: uppercase;
-        }
-
-        .cta p {
-            color: var(--muted);
-            margin-bottom: 0.9rem;
-            max-width: 62ch;
-            font-size: 0.98rem;
-        }
-
-        .contact-link {
-            font-family: "VT323", monospace;
-            font-size: 1.28rem;
-            color: #9ff9ff;
-            text-decoration: underline;
-            text-decoration-thickness: 2px;
-        }
-
-        footer {
-            border-top: 1px solid rgba(255, 91, 0, 0.55);
-            color: var(--muted);
-            font-size: 0.98rem;
-            padding: 1rem 0 1.7rem;
-            text-align: center;
-            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.45);
-        }
-
-        @media (max-width: 980px) {
-            nav {
-                display: none;
-            }
-
-            .hero {
-                grid-template-columns: 1fr;
-                padding-top: 3.6rem;
-                gap: 1.3rem;
-            }
-
-            .hero-brand-row {
-                align-items: flex-start;
-            }
-
-            .grid.cols-3,
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 680px) {
-            .wrap {
-                width: min(calc(100% - 1.4rem), var(--max));
-            }
-
-            h1 {
-                font-size: clamp(1.5rem, 8vw, 2rem);
-                line-height: 1.12;
-            }
-
-            .section-title {
-                font-size: clamp(1.2rem, 6vw, 1.5rem);
-            }
-
-            .btn {
-                width: 100%;
-                text-align: center;
-            }
-
-            .hero-brand-row {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-
-            .hero-logo {
-                width: min(240px, 100%);
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
-<body>
-    <header>
-        <div class="wrap topbar">
-            <a href="#topo" class="brand" id="topo">
-                <img src="./assets/capivice-logo.png" alt="Logo da Capivice" class="brand-logo">
-                <span>
-                    <strong>Capivice</strong>
-                    <span>Estúdio indie</span>
-                </span>
-            </a>
+<body class="is-loading">
+    <!-- Intro -->
+    <div class="loader" aria-hidden="true">
+        <img src="./assets/capivice-logo.png" alt="" class="loader-logo">
+        <div class="loader-bar"><span></span></div>
+        <p class="loader-label">Esquentando o café<span class="loader-pct">0</span>%</p>
+    </div>
 
-            <nav>
-                <a href="#sobre">Sobre</a>
-                <a href="#jogos">Jogos</a>
-                <a href="#processo">Processo</a>
-                <a href="#contato">Contato</a>
-            </nav>
-        </div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <a href="#topo" class="brand" aria-label="Capivice, voltar ao topo">
+            <img src="./assets/capivice-logo-alpha.png" alt="" class="brand-logo">
+            <span class="brand-name">Capivice</span>
+        </a>
+
+        <nav class="nav" aria-label="Principal">
+            <a href="#jogo">Crystal Defender</a>
+            <a href="#sobre">Estúdio</a>
+            <a href="#processo">Processo</a>
+            <a href="#contato">Contato</a>
+        </nav>
+
+        <a href="#contato" class="header-cta">Acompanhar</a>
+
+        <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu">
+            <span></span><span></span>
+        </button>
     </header>
 
-    <main class="wrap">
-        <section class="hero">
-            <div class="reveal">
-                <div class="hero-brand-row">
-                    <img src="./assets/capivice-logo.png" alt="Capivice" class="hero-logo">
-                    <div class="hero-brand-text">
-                        <strong>Capivice</strong>
-                        <span>Jogos que a gente adoraria jogar (e você também)</span>
+    <div class="mobile-menu" id="mobile-menu" hidden>
+        <a href="#jogo">Crystal Defender</a>
+        <a href="#sobre">Estúdio</a>
+        <a href="#processo">Processo</a>
+        <a href="#contato">Contato</a>
+    </div>
+
+    <main id="topo">
+        <!-- Hero: key art do Crystal Defender -->
+        <section class="hero" aria-labelledby="hero-title">
+            <canvas class="hero-canvas" aria-hidden="true"></canvas>
+            <div class="hero-vignette" aria-hidden="true"></div>
+
+            <div class="hero-content">
+                <p class="hero-kicker" data-split>Capivice apresenta</p>
+                <h1 class="hero-title" id="hero-title">
+                    <span class="line"><span>Crystal</span></span>
+                    <span class="line"><span>Defender</span></span>
+                </h1>
+                <p class="hero-tagline">O cristal tá sob ataque. Só você pode protegê-lo.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#jogo"><span>Conhecer o jogo</span></a>
+                    <a class="btn btn-ghost" href="#sobre"><span>Quem tá por trás?</span></a>
+                </div>
+            </div>
+
+            <div class="hero-meta">
+                <span class="badge-live"><i></i> Em desenvolvimento</span>
+                <span class="hero-meta-sep"></span>
+                <span>Defesa de base</span>
+            </div>
+
+            <a href="#ticker" class="scroll-cue" aria-label="Rolar para baixo">
+                <span>Role</span>
+                <i></i>
+            </a>
+        </section>
+
+        <!-- Ticker -->
+        <div class="ticker" id="ticker" aria-hidden="true">
+            <div class="ticker-track">
+                <span>Leve</span><b>✦</b><span>Divertido</span><b>✦</b><span>Bonito</span><b>✦</b><span>Só mais uma partida</span><b>✦</b>
+                <span>Leve</span><b>✦</b><span>Divertido</span><b>✦</b><span>Bonito</span><b>✦</b><span>Só mais uma partida</span><b>✦</b>
+            </div>
+        </div>
+
+        <!-- O jogo -->
+        <section class="game" id="jogo" aria-labelledby="game-title">
+            <div class="section-head">
+                <p class="eyebrow" data-reveal><span>01</span> O que tá no forno</p>
+                <h2 class="display" id="game-title" data-reveal>Um mago.<br>Um cristal.<br><em>Ondas sem fim.</em></h2>
+                <p class="lead" data-reveal>
+                    Agora a gente tá colocando todo o nosso tempo (e muito café) em um jogo só.
+                    Na pele de um mago, monte suas defesas, solte seus feitiços e segure onda após onda de inimigos.
+                </p>
+            </div>
+
+            <div class="features">
+                <article class="feature" data-reveal data-tilt>
+                    <div class="feature-art feature-art--build" aria-hidden="true">
+                        <svg viewBox="0 0 120 120"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M30 95h60M38 95V55h44v40M34 55l26-22 26 22"/><path d="M52 95V75h16v20"/><circle cx="60" cy="47" r="4"/></g></svg>
                     </div>
-                </div>
-                <h1>Pega um café, senta aí e vem jogar com a gente.</h1>
-                <p>
-                    Somos um estúdio pequeno que faz jogos leves, bonitos e daqueles que você fala "só mais uma partida" e, quando vê, já passou uma hora.
-                </p>
-                <div class="actions">
-                    <a class="btn btn-primary" href="#jogos">Quero conhecer o jogo</a>
-                    <a class="btn btn-secondary" href="#sobre">Quem tá por trás?</a>
-                </div>
-            </div>
-
-            <aside class="hero-card reveal delay-1" aria-label="Destaque do próximo projeto">
-                <span class="tag">Saindo do forno</span>
-                <h2>Crystal Defender</h2>
-                <p>
-                    Nosso primeiro jogo! Você é um mago e tem uma missão: proteger o cristal das hordas de monstros. Bonito, rapidinho e perigosamente viciante.
-                </p>
-                <ul>
-                    <li>Partidas curtas pra jogar no intervalo (ou a noite toda)</li>
-                    <li>Arte feita à mão, com todo o nosso jeitinho</li>
-                </ul>
-            </aside>
-        </section>
-
-        <section id="sobre" class="reveal delay-1">
-            <h2 class="section-title">Oi! A gente é a Capivice</h2>
-            <p class="section-sub">
-                Um grupo de amigos que cresceu jogando e resolveu fazer os próprios jogos. A ideia é simples: jogos fáceis de começar e difíceis de largar.
-            </p>
-
-            <div class="stats">
-                <div class="stat">
-                    <strong>Leve</strong>
-                    <span>Abriu, entendeu, já tá jogando</span>
-                </div>
-                <div class="stat">
-                    <strong>Divertido</strong>
-                    <span>Aquele ritmo que prende sem cansar</span>
-                </div>
-                <div class="stat">
-                    <strong>Bonito</strong>
-                    <span>Cada detalhe desenhado com carinho</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="jogos" class="reveal delay-2">
-            <h2 class="section-title">O que tá no forno</h2>
-            <p class="section-sub">
-                Agora a gente tá colocando todo o nosso tempo (e muito café) em um jogo só. Dá uma olhada:
-            </p>
-
-            <div class="grid">
-                <article class="card">
-                    <span class="pill">Defesa de base</span>
-                    <h3>Crystal Defender</h3>
-                    <p>
-                        O cristal tá sob ataque e só você pode protegê-lo. Na pele de um mago, monte suas defesas, solte seus feitiços e segure onda após onda de inimigos. Fases rápidas, muita magia e aquela vontade de tentar de novo.
-                    </p>
+                    <span class="feature-num">I</span>
+                    <h3>Monte suas defesas</h3>
+                    <p>Torres, barreiras e armadilhas no lugar certo fazem toda a diferença.</p>
+                </article>
+                <article class="feature" data-reveal data-tilt>
+                    <div class="feature-art feature-art--spell" aria-hidden="true">
+                        <svg viewBox="0 0 120 120"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="60" cy="60" r="32"/><circle cx="60" cy="60" r="22" stroke-dasharray="4 6"/><path d="M60 22v12M60 86v12M22 60h12M86 60h12"/><path d="M60 44l6 16-6 16-6-16z"/></g></svg>
+                    </div>
+                    <span class="feature-num">II</span>
+                    <h3>Solte seus feitiços</h3>
+                    <p>Magia na hora certa vira o jogo quando a horda aperta.</p>
+                </article>
+                <article class="feature" data-reveal data-tilt>
+                    <div class="feature-art feature-art--waves" aria-hidden="true">
+                        <svg viewBox="0 0 120 120"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M18 50c10-10 20 10 30 0s20 10 30 0 20 10 30 0"/><path d="M18 66c10-10 20 10 30 0s20 10 30 0 20 10 30 0"/><path d="M18 82c10-10 20 10 30 0s20 10 30 0 20 10 30 0"/><path d="M60 22l8 12-8 8-8-8z"/></g></svg>
+                    </div>
+                    <span class="feature-num">III</span>
+                    <h3>Segure as ondas</h3>
+                    <p>Fases rápidas, muita magia e aquela vontade de tentar de novo.</p>
                 </article>
             </div>
+
+            <div class="game-strip" data-reveal>
+                <div class="game-strip-item"><strong data-count="1">0</strong><span>Cristal pra proteger</span></div>
+                <div class="game-strip-item"><strong>∞</strong><span>Vontade de tentar de novo</span></div>
+                <div class="game-strip-item"><strong data-count="100">0</strong><span>% feito com carinho</span></div>
+            </div>
         </section>
 
-        <section id="processo" class="reveal delay-3">
-            <h2 class="section-title">Como a mágica acontece</h2>
-            <p class="section-sub">
-                Sem fórmula secreta. A gente só faz o jogo que gostaria de encontrar numa loja.
-            </p>
+        <!-- Estúdio -->
+        <section class="studio" id="sobre" aria-labelledby="studio-title">
+            <div class="studio-logo-wrap" aria-hidden="true">
+                <img src="./assets/capivice-logo.png" alt="" class="studio-logo">
+            </div>
+            <div class="studio-copy">
+                <p class="eyebrow" data-reveal><span>02</span> Oi! A gente é a Capivice</p>
+                <h2 class="sr-only" id="studio-title">Sobre o estúdio</h2>
+                <p class="statement" data-words>
+                    Um grupo de amigos que cresceu jogando e resolveu fazer os próprios jogos.
+                    A ideia é simples: jogos fáceis de começar e difíceis de largar.
+                </p>
+                <ul class="pillars">
+                    <li data-reveal><strong>Leve</strong><span>Abriu, entendeu, já tá jogando.</span></li>
+                    <li data-reveal><strong>Divertido</strong><span>Aquele ritmo que prende sem cansar.</span></li>
+                    <li data-reveal><strong>Bonito</strong><span>Cada detalhe desenhado com carinho.</span></li>
+                </ul>
+            </div>
+        </section>
 
-            <ol class="process">
-                <li>
-                    <h4>Tem que empolgar a gente primeiro</h4>
-                    <p>
-                        Se a ideia não deixar o time animado como jogador, ela nem sai do papel.
-                    </p>
+        <!-- Processo -->
+        <section class="process" id="processo" aria-labelledby="process-title">
+            <div class="process-sticky">
+                <p class="eyebrow"><span>03</span> Como a mágica acontece</p>
+                <h2 class="display" id="process-title">Sem fórmula<br><em>secreta.</em></h2>
+                <p class="lead">A gente só faz o jogo que gostaria de encontrar numa loja.</p>
+                <div class="process-counter" aria-hidden="true">
+                    <span class="process-counter-num">01</span>
+                    <span class="process-counter-total">/ 03</span>
+                </div>
+            </div>
+
+            <ol class="steps">
+                <li class="step" data-step="01">
+                    <span class="step-num">01</span>
+                    <h3>Tem que empolgar a gente primeiro</h3>
+                    <p>Se a ideia não deixar o time animado como jogador, ela nem sai do papel.</p>
                 </li>
-                <li>
-                    <h4>Joga, ajusta, joga de novo</h4>
-                    <p>
-                        A gente testa até o jogo virar aquele que ninguém do time consegue largar. Aí sabemos que tá pronto.
-                    </p>
+                <li class="step" data-step="02">
+                    <span class="step-num">02</span>
+                    <h3>Joga, ajusta, joga de novo</h3>
+                    <p>A gente testa até o jogo virar aquele que ninguém do time consegue largar. Aí sabemos que tá pronto.</p>
                 </li>
-                <li>
-                    <h4>Capricho nos detalhes</h4>
-                    <p>
-                        No final, a gente cuida de cada animação, som e cor, pra que jogar seja gostoso do primeiro ao último minuto.
-                    </p>
+                <li class="step" data-step="03">
+                    <span class="step-num">03</span>
+                    <h3>Capricho nos detalhes</h3>
+                    <p>No final, a gente cuida de cada animação, som e cor, pra que jogar seja gostoso do primeiro ao último minuto.</p>
                 </li>
             </ol>
         </section>
 
-        <section id="contato" class="cta reveal delay-3">
-            <h3>Bora jogar junto?</h3>
-            <p>
-                O Crystal Defender tá chegando e a gente quer muito que você seja um dos primeiros a jogar. Acompanha a gente pra não perder nada!
+        <!-- CTA -->
+        <section class="cta" id="contato" aria-labelledby="cta-title">
+            <div class="cta-glow" aria-hidden="true"></div>
+            <p class="eyebrow" data-reveal><span>04</span> Bora jogar junto?</p>
+            <h2 class="cta-title" id="cta-title" data-reveal>Seja um dos<br><em>primeiros</em> a jogar.</h2>
+            <p class="lead" data-reveal>
+                O Crystal Defender tá chegando e a gente quer muito que você esteja lá.
+                Acompanha a gente pra não perder nada!
             </p>
-            <a class="btn btn-primary" href="#jogos">Ver o Crystal Defender</a>
-            <p style="margin-top:0.75rem; margin-bottom:0;">
-                Quer dar um oi, mandar sugestão ou só bater papo? Chama a gente em
-                <a class="contact-link" href="#" aria-label="Abrir perfil da Capivice">@capivice</a>.
-            </p>
+            <div class="hero-actions" data-reveal>
+                <a class="btn btn-primary btn-lg" href="#" aria-label="Abrir perfil da Capivice"><span>Seguir @capivice</span></a>
+                <a class="btn btn-ghost" href="#jogo"><span>Ver o Crystal Defender</span></a>
+            </div>
+            <p class="cta-note" data-reveal>Quer dar um oi, mandar sugestão ou só bater papo? Chama a gente em <a href="#" class="link">@capivice</a>.</p>
         </section>
     </main>
 
-    <footer>
-        <div class="wrap">
-            Capivice, 2026. Feito com carinho, café e muita vontade de te ver jogando.
+    <footer class="site-footer">
+        <div class="footer-mark" aria-hidden="true">Capivice</div>
+        <div class="footer-row">
+            <span>© 2026 Capivice</span>
+            <span>Feito com carinho, café e muita vontade de te ver jogando.</span>
+            <a href="#topo" class="link">Voltar ao topo ↑</a>
         </div>
     </footer>
+
+    <script src="./js/hero.js" defer></script>
+    <script src="./js/main.js" defer></script>
 </body>
 </html>

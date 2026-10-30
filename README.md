@@ -14,6 +14,15 @@ Esta pasta (`docs/`) contém a versão estática do site, pronta para GitHub Pag
 
 ## Estrutura
 
-- `index.html`: página principal estática
-- `assets/capivice-logo.png`: logo usado no layout
-- `.nojekyll`: evita processamento Jekyll
+- `index.html`: página principal
+- `css/style.css`: estilos (tokens, layout, animações, responsivo)
+- `js/hero.js`: key art animada do Crystal Defender em canvas (cristal, círculo rúnico, inimigos e raios)
+- `js/main.js`: loader, header, menu mobile, reveals no scroll, contadores, tilt e botões magnéticos
+- `assets/capivice-logo.png`: logo original (fundo preto)
+- `assets/capivice-logo-alpha.png`: logo com fundo transparente (header e favicon)
+
+## Rodar localmente
+
+```bash
+python3 -m http.server 5173
+```
