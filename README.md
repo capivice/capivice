@@ -1,4 +1,4 @@
-# Capivice Landing (GitHub Pages)
+# Capivice Landing (GitHub Pages) -
 
 Esta pasta (`docs/`) contém a versão estática do site, pronta para GitHub Pages.
 
